@@ -6,7 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ConsoleAppFramework" Version="2.4.0" />
+      <PackageReference Include="CommandLineArgumentsParser" Version="3.0.20" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers" />
     </ItemGroup>
 
 </Project>

@@ -1,14 +1,17 @@
-﻿using System.Threading.Tasks;
-using ConsoleAppFramework;
-using Microsoft.Extensions.Hosting;
-
+﻿using System;
+using WaterMark1.Models;
+using CommandParser = CommandLineParser.CommandLineParser;
 namespace WaterMark1
 {
-    class Program : ConsoleAppBase
+    class Program 
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            await Host.CreateDefaultBuilder().RunConsoleAppFrameworkAsync(args);
+            CommandParser parser = new CommandParser();
+            ArgumentsModel model = new ArgumentsModel();
+            parser.ExtractArgumentAttributes(model);
+            parser.ParseCommandLine(args);
+            Console.WriteLine(model.Place);
         }
     }
 }
