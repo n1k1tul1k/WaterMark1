@@ -1,5 +1,7 @@
-﻿using System;
-using WaterMark1.Models;
+﻿﻿using System;
+ using System.Drawing;
+ using WaterMark1.Controllers;
+ using WaterMark1.Models;
 using CommandParser = CommandLineParser.CommandLineParser;
 namespace WaterMark1
 {
@@ -7,11 +9,20 @@ namespace WaterMark1
     {
         public static void Main(string[] args)
         {
+            ArgumentsModel argumentsModel = GetArguments(args);
+            Bitmap watermark = new Bitmap(@"c:/watermark.png");
+            Bitmap bitmap = new Bitmap(@"c:/image.png");
+            bitmap = ImageController.AddWatermarkToImage(bitmap, watermark);
+            bitmap.Save(@"C:/watermarkedImage.png");
+        }
+
+        public static ArgumentsModel GetArguments(string[] args)
+        {
             CommandParser parser = new CommandParser();
-            ArgumentsModel model = new ArgumentsModel();
-            parser.ExtractArgumentAttributes(model);
+            ArgumentsModel argumentsModel = new ArgumentsModel();
+            parser.ExtractArgumentAttributes(argumentsModel);
             parser.ParseCommandLine(args);
-            Console.WriteLine(model.Place);
+            return argumentsModel;
         }
     }
 }
