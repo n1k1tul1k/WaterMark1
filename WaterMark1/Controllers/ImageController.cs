@@ -1,10 +1,12 @@
 using System;
 using System.Drawing;
+using WaterMark1.Enums;
+
 namespace WaterMark1.Controllers
 {
     public class ImageController
     {
-        public static Bitmap AddWatermarkToImage(Bitmap image,Bitmap watermark)
+        public static Bitmap AddWatermarkToImage(Bitmap image,Bitmap watermark,PositionEnum position)
         {
             using (Graphics g = Graphics.FromImage(image))
             {

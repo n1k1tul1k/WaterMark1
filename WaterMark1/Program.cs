@@ -1,6 +1,7 @@
 ﻿﻿using System;
  using System.Drawing;
  using WaterMark1.Controllers;
+ using WaterMark1.Enums;
  using WaterMark1.Models;
 using CommandParser = CommandLineParser.CommandLineParser;
 namespace WaterMark1
@@ -12,7 +13,7 @@ namespace WaterMark1
             ArgumentsModel argumentsModel = GetArguments(args);
             Bitmap watermark = new Bitmap(@"c:/watermark.png");
             Bitmap bitmap = new Bitmap(@"c:/image.png");
-            bitmap = ImageController.AddWatermarkToImage(bitmap, watermark);
+            bitmap = ImageController.AddWatermarkToImage(bitmap, watermark,PositionEnum.center);
             bitmap.Save(@"C:/watermarkedImage.png");
         }
 
