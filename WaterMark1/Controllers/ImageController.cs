@@ -1,22 +1,29 @@
-using System;
 using System.Drawing;
 using WaterMark1.Enums;
+using WaterMark1.Models;
 
 namespace WaterMark1.Controllers
 {
     public class ImageController
     {
-        public static Bitmap AddWatermarkToImage(Bitmap image,Bitmap watermark,PositionEnum position)
+        private ArgumentsModel _arguments;
+        private readonly CoordinatesController _controller;
+
+        public ImageController(ArgumentsModel arguments, CoordinatesController controller)
         {
-            using (Graphics g = Graphics.FromImage(image))
+            _arguments = arguments;
+            _controller = controller;
+        }
+
+        public Bitmap AddWatermarkToImage(Bitmap image, Bitmap watermark, PositionEnum position)
+        {
+            using (var g = Graphics.FromImage(image))
             {
-                int x = (image.Width - watermark.Width) / 2;
-                int y = (image.Height - watermark.Height) / 2;
-                g.DrawImage(watermark,x,y,watermark.Width,watermark.Height);
+                var point = _controller.GetPointFromPosition(position);
+                g.DrawImage(watermark, point.X, point.Y, watermark.Width, watermark.Height);
             }
 
             return image;
         }
-
     }
 }
