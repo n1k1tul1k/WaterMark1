@@ -5,7 +5,6 @@ namespace WaterMark1.Models
 {
     public class ArgumentsModel
     {
-
         [DirectoryArgument('d', "directory", DirectoryMustExist = true)]
         public DirectoryInfo InputDirectory;
 
