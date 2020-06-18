@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using WaterMark1.Enums;
 
@@ -19,6 +20,18 @@ namespace WaterMark1.Controllers
             return (coordinate1 - coordinate2) / 2;
         }
 
+        public PositionEnum GetPositionFromLine(string line)
+        {
+            switch (line)
+            {
+                case "tl":
+                    return PositionEnum.TopLeft;
+                case "c":
+                    return PositionEnum.Center;
+                default:
+                    return PositionEnum.Center;
+            }
+        }
         public Point GetPointFromPosition(PositionEnum position)
         {
             switch (position)

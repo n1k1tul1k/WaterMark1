@@ -1,6 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using WaterMark1.Controllers;
 using WaterMark1.Enums;
+using WaterMark1.Helpers;
 using WaterMark1.Models;
 using CommandParser = CommandLineParser.CommandLineParser;
 
@@ -11,8 +13,11 @@ namespace WaterMark1
         public static void Main(string[] args)
         {
             var argumentsModel = GetArguments(args);
-            var watermark = new Bitmap(@"watermark.png");
-            var bitmap = new Bitmap(@"image.jpg");
+            var value = TextHelper.ConvertPositionValue(argumentsModel.Place);
+        }
+
+        public static void ProcessImages(Bitmap bitmap,Bitmap watermark,ArgumentsModel argumentsModel)
+        {
             var coordinatesController = new CoordinatesController(bitmap, watermark);
             var imageController = new ImageController(argumentsModel, coordinatesController);
             bitmap = imageController.AddWatermarkToImage(bitmap, watermark, PositionEnum.TopRight);
