@@ -4,6 +4,11 @@ namespace WaterMark1.Enums
     {
         Center,
         TopLeft,
-        TopRight
+        TopRight,
+        TopCenter,
+        BottomRight,
+        BottomLeft,
+        BottomCenter,
+        
     }
 }
