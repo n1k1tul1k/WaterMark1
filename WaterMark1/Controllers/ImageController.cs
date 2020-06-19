@@ -6,7 +6,7 @@ namespace WaterMark1.Controllers
 {
     public class ImageController
     {
-        private ArgumentsModel _arguments;
+        private readonly ArgumentsModel _arguments;
         private readonly CoordinatesController _controller;
 
         public ImageController(ArgumentsModel arguments, CoordinatesController controller)

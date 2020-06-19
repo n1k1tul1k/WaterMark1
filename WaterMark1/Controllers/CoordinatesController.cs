@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using WaterMark1.Enums;
+using WaterMark1.Helpers;
 
 namespace WaterMark1.Controllers
 {
@@ -22,6 +23,7 @@ namespace WaterMark1.Controllers
 
         public PositionEnum GetPositionFromLine(string line)
         {
+            string validatedData = TextHelper.ConvertPositionValue(line);
             switch (line)
             {
                 case "tl":

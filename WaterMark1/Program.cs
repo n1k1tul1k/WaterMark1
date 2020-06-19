@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using WaterMark1.Controllers;
 using WaterMark1.Enums;
 using WaterMark1.Helpers;
@@ -13,15 +14,21 @@ namespace WaterMark1
         public static void Main(string[] args)
         {
             var argumentsModel = GetArguments(args);
-            var value = TextHelper.ConvertPositionValue(argumentsModel.Place);
+            var watermark = new Bitmap(argumentsModel.InputMarkFile.FullName);
+            foreach (var image in Directory.GetFiles(argumentsModel.InputDirectory.FullName))
+            {
+                var bitmapImage = new Bitmap(image);
+                ProcessImages(bitmapImage, watermark, argumentsModel,argumentsModel.InputMarkFile.Name,argumentsModel.Place);
+            }
         }
 
-        public static void ProcessImages(Bitmap bitmap,Bitmap watermark,ArgumentsModel argumentsModel)
+        public static void ProcessImages(Bitmap bitmap, Bitmap watermark, ArgumentsModel argumentsModel, string fileName,string pos)
         {
             var coordinatesController = new CoordinatesController(bitmap, watermark);
             var imageController = new ImageController(argumentsModel, coordinatesController);
-            bitmap = imageController.AddWatermarkToImage(bitmap, watermark, PositionEnum.TopRight);
-            bitmap.Save(@"watermarkedImage.png");
+            var position = coordinatesController.GetPositionFromLine(pos);
+            bitmap = imageController.AddWatermarkToImage(bitmap, watermark, position);
+            bitmap.Save($"{fileName}.png");
         }
 
         public static ArgumentsModel GetArguments(string[] args)

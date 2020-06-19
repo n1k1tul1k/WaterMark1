@@ -9,6 +9,5 @@ namespace WaterMark1.Enums
         BottomRight,
         BottomLeft,
         BottomCenter,
-        
     }
 }
