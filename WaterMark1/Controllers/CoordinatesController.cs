@@ -26,8 +26,16 @@ namespace WaterMark1.Controllers
             {
                 case "tl":
                     return PositionEnum.TopLeft;
-                case "c":
-                    return PositionEnum.Center;
+                case "tr":
+                    return PositionEnum.TopRight;
+                case "tc":
+                    return PositionEnum.TopCenter;
+                case "bl":
+                    return PositionEnum.BottomLeft;
+                case "br":
+                    return PositionEnum.BottomRight;
+                case "bc":
+                    return PositionEnum.BottomCenter;
                 default:
                     return PositionEnum.Center;
             }

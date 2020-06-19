@@ -22,7 +22,6 @@ namespace WaterMark1.Controllers
                 var point = _controller.GetPointFromPosition(position);
                 g.DrawImage(watermark, point.X, point.Y, watermark.Width, watermark.Height);
             }
-
             return image;
         }
     }
