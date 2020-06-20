@@ -12,7 +12,7 @@ namespace WaterMark1.Models
         public FileInfo InputMarkFile { get; set; }
 
         [ValueArgument(typeof(string), 'p', "place")]
-        public string Place { get; set; }
+        public string Position { get; set; }
 
         [ValueArgument(typeof(int), 'o', "opacity", DefaultValue = 100)]
         public int Opacity { get; set; }

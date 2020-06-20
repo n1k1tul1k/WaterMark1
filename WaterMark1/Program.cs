@@ -13,12 +13,20 @@ namespace WaterMark1
     {
         public static void Main(string[] args)
         {
-            var argumentsModel = GetArguments(args);
-            var watermark = new Bitmap(argumentsModel.InputMarkFile.FullName);
-            foreach (var image in Directory.GetFiles(argumentsModel.InputDirectory.FullName))
+            try
             {
-                var bitmapImage = new Bitmap(image);
-                ProcessImages(bitmapImage, watermark, argumentsModel,argumentsModel.InputMarkFile.Name,argumentsModel.Place);
+                var argumentsModel = GetArguments(args);
+                var watermark = new Bitmap(argumentsModel.InputMarkFile.FullName);
+                foreach (var image in Directory.GetFiles(argumentsModel.InputDirectory.FullName))
+                {
+                    var bitmapImage = new Bitmap(image);
+                    ProcessImages(bitmapImage, watermark, argumentsModel, argumentsModel.InputMarkFile.Name,
+                        argumentsModel.Position);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
