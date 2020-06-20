@@ -2,11 +2,11 @@ using System.Linq;
 
 namespace WaterMark1.Helpers
 {
-    public class TextHelper
+    public static class TextHelper
     {
-        public static string ConvertPositionValue(string value)
+        public static string ConvertPositionValue(this string value)
         {
-            if (value.Length > 2)
+            if (value.Length > 2 && value.Contains('-'))
                 return string.Concat(value.Split('-').Select(x => x[0]));
             return value;
         }

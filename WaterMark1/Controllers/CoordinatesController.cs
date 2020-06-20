@@ -1,4 +1,3 @@
-using System;
 using System.Drawing;
 using WaterMark1.Enums;
 using WaterMark1.Helpers;
@@ -23,39 +22,28 @@ namespace WaterMark1.Controllers
 
         public PositionEnum GetPositionFromLine(string line)
         {
-            string validatedData = TextHelper.ConvertPositionValue(line);
-            switch (line)
+            string validatedData = line.ConvertPositionValue();
+            return validatedData switch
             {
-                case "tl":
-                    return PositionEnum.TopLeft;
-                case "tr":
-                    return PositionEnum.TopRight;
-                case "tc":
-                    return PositionEnum.TopCenter;
-                case "bl":
-                    return PositionEnum.BottomLeft;
-                case "br":
-                    return PositionEnum.BottomRight;
-                case "bc":
-                    return PositionEnum.BottomCenter;
-                default:
-                    return PositionEnum.Center;
-            }
+                "tl" => PositionEnum.TopLeft,
+                "tr" => PositionEnum.TopRight,
+                "tc" => PositionEnum.TopCenter,
+                "bl" => PositionEnum.BottomLeft,
+                "br" => PositionEnum.BottomRight,
+                "bc" => PositionEnum.BottomCenter,
+                _ => PositionEnum.Center,
+            };
         }
         public Point GetPointFromPosition(PositionEnum position)
         {
-            switch (position)
+            return position switch
             {
-                case PositionEnum.Center:
-                    return new Point(GetCenterCoordinate(_image.Width, _watermark.Width),
-                        GetCenterCoordinate(_image.Height, _watermark.Height));
-                case PositionEnum.TopLeft:
-                    return new Point(0, 0);
-                case PositionEnum.TopRight:
-                    return new Point(_image.Width - _watermark.Width, 0);
-                default:
-                    return Point.Empty;
-            }
+                PositionEnum.Center => new Point(GetCenterCoordinate(_image.Width, _watermark.Width),
+                    GetCenterCoordinate(_image.Height, _watermark.Height)),
+                PositionEnum.TopLeft => new Point(0, 0),
+                PositionEnum.TopRight => new Point(_image.Width - _watermark.Width, 0),
+                _ => Point.Empty,
+            };
         }
     }
 }
