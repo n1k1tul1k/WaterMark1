@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.IO;
 using WaterMark1.Controllers;
-using WaterMark1.Enums;
-using WaterMark1.Helpers;
 using WaterMark1.Models;
 using CommandParser = CommandLineParser.CommandLineParser;
 
@@ -17,11 +15,12 @@ namespace WaterMark1
             {
                 var argumentsModel = GetArguments(args);
                 var watermark = new Bitmap(argumentsModel.InputMarkFile.FullName);
+                Console.WriteLine("Start image processing");
                 foreach (var image in Directory.GetFiles(argumentsModel.InputDirectory.FullName))
                 {
+                    Console.WriteLine($"Process image:{image}");
                     var bitmapImage = new Bitmap(image);
-                    ProcessImages(bitmapImage, watermark, argumentsModel, argumentsModel.InputMarkFile.Name,
-                        argumentsModel.Position);
+                    ProcessImages(bitmapImage, watermark, argumentsModel, argumentsModel.InputMarkFile.Name);
                 }
             }
             catch (Exception ex)
@@ -30,13 +29,13 @@ namespace WaterMark1
             }
         }
 
-        public static void ProcessImages(Bitmap bitmap, Bitmap watermark, ArgumentsModel argumentsModel, string fileName,string pos)
+        public static void ProcessImages(Bitmap bitmap, Bitmap watermark, ArgumentsModel argumentsModel, string fileName)
         {
             var coordinatesController = new CoordinatesController(bitmap, watermark);
             var imageController = new ImageController(argumentsModel, coordinatesController);
-            var position = coordinatesController.GetPositionFromLine(pos);
+            var position = coordinatesController.GetPositionFromArgument(argumentsModel.Position);
             bitmap = imageController.AddWatermarkToImage(bitmap, watermark, position);
-            bitmap.Save($"{fileName}.png");
+            bitmap.Save(fileName);
         }
 
         public static ArgumentsModel GetArguments(string[] args)

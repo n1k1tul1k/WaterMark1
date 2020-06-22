@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Drawing;
 using WaterMark1.Enums;
 using WaterMark1.Helpers;
@@ -16,20 +17,19 @@ namespace WaterMark1.Controllers
         }
         
 
-        public PositionEnum GetPositionFromLine(string line)
+        public PositionEnum GetPositionFromArgument(string argument)
         {
-            string validatedData = line.ConvertPositionValue();
-            return validatedData switch
+            Dictionary<string, PositionEnum> positions = new Dictionary<string, PositionEnum>()
             {
-                "tl" => PositionEnum.TopLeft,
-                "tr" => PositionEnum.TopRight,
-                "tc" => PositionEnum.TopCenter,
-                "bl" => PositionEnum.BottomLeft,
-                "br" => PositionEnum.BottomRight,
-                "bc" => PositionEnum.BottomCenter,
-                "cc" => PositionEnum.Center,
-                _ => PositionEnum.Center,
+                {"tl" , PositionEnum.TopLeft},
+                {"tr" , PositionEnum.TopRight},
+                {"tc" , PositionEnum.TopCenter},
+                {"bl" , PositionEnum.BottomLeft},
+                {"br" , PositionEnum.BottomRight},
+                {"bc" , PositionEnum.BottomCenter},
+                {"cc" , PositionEnum.Center},
             };
+            return positions[argument.ConvertPositionValue()];
         }
         public Point GetPointFromPosition(PositionEnum position)
         {
