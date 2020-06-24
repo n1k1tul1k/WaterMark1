@@ -16,7 +16,6 @@ namespace WaterMark1.Controllers
             _watermark = watermark;
         }
         
-
         public PositionEnum GetPositionFromArgument(string argument)
         {
             Dictionary<string, PositionEnum> positions = new Dictionary<string, PositionEnum>()

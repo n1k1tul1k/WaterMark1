@@ -15,6 +15,22 @@ namespace WaterMark1.Controllers
             _controller = controller;
         }
 
+        public Bitmap ChangeImageTransparent(Bitmap image, byte alpha)
+        {
+            Bitmap resultImage = new Bitmap(image.Width, image.Height);
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Color imageColor = image.GetPixel(x, y);
+                    Color transparentColor = Color.FromArgb(alpha,imageColor);
+                    image.SetPixel(x,y,transparentColor);
+                }
+            }
+
+            return resultImage;
+        }
+
         public Bitmap AddWatermarkToImage(Bitmap image, Bitmap watermark, PositionEnum position)
         {
             using (var g = Graphics.FromImage(image))
