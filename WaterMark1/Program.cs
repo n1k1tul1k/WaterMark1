@@ -34,6 +34,11 @@ namespace WaterMark1
             var coordinatesController = new CoordinatesController(bitmap, watermark);
             var imageController = new ImageController(argumentsModel, coordinatesController);
             var position = coordinatesController.GetPositionFromArgument(argumentsModel.Position);
+            var path = argumentsModel.ResultDirectory == null
+                ? Environment.CurrentDirectory
+                : argumentsModel.Position;
+            if(argumentsModel.ResultDirectory == null)
+                Console.WriteLine("Error fuck damn");
             bitmap = imageController.AddWatermarkToImage(bitmap, watermark, position);
             bitmap.Save(fileName);
         }

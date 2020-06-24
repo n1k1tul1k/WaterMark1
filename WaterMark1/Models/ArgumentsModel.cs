@@ -9,6 +9,9 @@ namespace WaterMark1.Models
         [DirectoryArgument('d', "directory", DirectoryMustExist = true)]
         public DirectoryInfo InputDirectory;
 
+        [DirectoryArgument('r', "resultdirectory", DirectoryMustExist = true)]
+        public DirectoryInfo ResultDirectory;
+
         [FileArgument('m', "mark", FileMustExist = true)]
         public FileInfo InputMarkFile { get; set; }
 
