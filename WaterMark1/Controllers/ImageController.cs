@@ -6,12 +6,10 @@ namespace WaterMark1.Controllers
 {
     public class ImageController
     {
-        private readonly ArgumentsModel _arguments;
         private readonly CoordinatesController _controller;
 
-        public ImageController(ArgumentsModel arguments, CoordinatesController controller)
+        public ImageController(CoordinatesController controller)
         {
-            _arguments = arguments;
             _controller = controller;
         }
 

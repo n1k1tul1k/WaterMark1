@@ -37,10 +37,10 @@ namespace WaterMark1
             var path = argumentsModel.ResultDirectory == null
                 ? Environment.CurrentDirectory
                 : argumentsModel.Position;
-            if(argumentsModel.ResultDirectory == null)
-                Console.WriteLine("Error fuck damn");
+            
+            
             bitmap = imageController.AddWatermarkToImage(bitmap, watermark, position);
-            bitmap.Save(fileName);
+            bitmap.Save(Path.Combine(path,fileName));
         }
 
         public static ArgumentsModel GetArguments(string[] args)
