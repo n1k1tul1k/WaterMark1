@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMark1", "WaterMark1\WaterMark1.csproj", "{A8A6E6A4-D77A-4211-B585-4D309680878A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMark1.Tests", "WaterMark1.Tests\WaterMark1.Tests.csproj", "{FE823E39-D5AA-4A59-8945-749F991C0998}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A8A6E6A4-D77A-4211-B585-4D309680878A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A6E6A4-D77A-4211-B585-4D309680878A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A6E6A4-D77A-4211-B585-4D309680878A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE823E39-D5AA-4A59-8945-749F991C0998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE823E39-D5AA-4A59-8945-749F991C0998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE823E39-D5AA-4A59-8945-749F991C0998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE823E39-D5AA-4A59-8945-749F991C0998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
