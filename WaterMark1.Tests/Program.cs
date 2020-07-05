@@ -10,7 +10,7 @@ namespace WaterMark1.Tests
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string imagesPath = Path.Combine(desktopPath, "images");
-            string exePath =
+            string exePath = 
                 "C:\\Users\\ddeve\\RiderProjects\\WaterMark1\\WaterMark1\\bin\\Debug\\netcoreapp3.1\\WaterMark1.exe";
             string[] positions = new[] {"tl", "tr", "tc", "ml", "mr", "bl", "br", "bc", "cc"};
             foreach (var position in positions)

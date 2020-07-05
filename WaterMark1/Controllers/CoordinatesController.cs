@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using WaterMark1.Enums;
 using WaterMark1.Helpers;
 
@@ -25,15 +26,18 @@ namespace WaterMark1.Controllers
             return _positionType switch
             {
                 PositionTypeEnum.ReservedPositionType => GetPointFromReservePosition(),
+                PositionTypeEnum.PixelsType => GetPointFromPixelsType(),
+                
             };
         }
+        
         private PositionTypeEnum GetPositionType(string position)
         {
             if (position.Contains(":"))
                 return PositionTypeEnum.PixelsType;
             if (position.Contains(":") && position.Contains("%"))
                 return PositionTypeEnum.PercentType;
-            if (position.GetShortPosition().Length > 2)
+            if (position.GetShortPosition().Length <= 2)
                 return PositionTypeEnum.ReservedPositionType;
             throw new Exception("Unreserved Type");
         }
@@ -69,6 +73,11 @@ namespace WaterMark1.Controllers
 
                 _ => Point.Empty,
             };
+        }
+        private Point GetPointFromPixelsType()
+        {
+            var coordinates = _position.Split(':').Select(x=> int.Parse(x)).ToList();
+            return new Point(coordinates[0],coordinates[1]);
         }
     }
 }

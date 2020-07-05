@@ -38,7 +38,7 @@ namespace WaterMark1
                 ? Environment.CurrentDirectory
                 : argumentsModel.ResultDirectory.ToString();
             string fileExtension = new FileInfo(fileName).Extension;
-            fileName = fileName.Replace(fileExtension, $"{argumentsModel.Position}{fileExtension}");
+            fileName = fileName.Replace(fileExtension, $"{fileExtension}");
             Console.WriteLine($"Save image at {fileName}");
             bitmap = imageController.AddWatermarkToImage(bitmap, watermark);
             bitmap.Save(Path.Combine(path,fileName));
