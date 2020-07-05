@@ -31,15 +31,16 @@ namespace WaterMark1
 
         public static void ProcessImages(Bitmap bitmap, Bitmap watermark, ArgumentsModel argumentsModel, string fileName)
         {
-            var coordinatesController = new CoordinatesController(bitmap, watermark);
-            var imageController = new ImageController(argumentsModel, coordinatesController);
-            var position = coordinatesController.GetPositionFromArgument(argumentsModel.Position);
+            var coordinatesController = new CoordinatesController(bitmap, watermark,argumentsModel.Position);
+            var imageController = new ImageController(coordinatesController);
+            var position = coordinatesController.GetPoint();
             var path = argumentsModel.ResultDirectory == null
                 ? Environment.CurrentDirectory
-                : argumentsModel.Position;
-            
-            
-            bitmap = imageController.AddWatermarkToImage(bitmap, watermark, position);
+                : argumentsModel.ResultDirectory.ToString();
+            string fileExtension = new FileInfo(fileName).Extension;
+            fileName = fileName.Replace(fileExtension, $"{argumentsModel.Position}{fileExtension}");
+            Console.WriteLine($"Save image at {fileName}");
+            bitmap = imageController.AddWatermarkToImage(bitmap, watermark);
             bitmap.Save(Path.Combine(path,fileName));
         }
 

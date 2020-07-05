@@ -29,11 +29,11 @@ namespace WaterMark1.Controllers
             return resultImage;
         }
 
-        public Bitmap AddWatermarkToImage(Bitmap image, Bitmap watermark, PositionEnum position)
+        public Bitmap AddWatermarkToImage(Bitmap image, Bitmap watermark)
         {
             using (var g = Graphics.FromImage(image))
             {
-                var point = _controller.GetPointFromPosition(position);
+                var point = _controller.GetPoint();
                 g.DrawImage(watermark, point.X, point.Y, watermark.Width, watermark.Height);
             }
             return image;
